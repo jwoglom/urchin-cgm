@@ -138,6 +138,7 @@ typedef struct __attribute__((__packed__)) Preferences {
   uint8_t status_min_recency_to_show_minutes;
   uint16_t status_max_age_minutes;
   unsigned int status_recency_format:3;
+  bool status_center_text;
 } Preferences;
 
 void init_prefs();

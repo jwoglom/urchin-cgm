@@ -99,6 +99,7 @@ void set_prefs(DictionaryIterator *data) {
   s_prefs->status_min_recency_to_show_minutes = get_int32(data, MESSAGE_KEY_statusMinRecencyToShowMinutes);
   s_prefs->status_max_age_minutes = get_int32(data, MESSAGE_KEY_statusMaxAgeMinutes);
   s_prefs->status_recency_format = get_int32(data, MESSAGE_KEY_statusRecencyFormat);
+  s_prefs->status_center_text = get_int32(data, MESSAGE_KEY_statusCenterText);
 
   s_prefs->num_elements = get_int32(data, MESSAGE_KEY_numElements);
   decode_layout_elements(s_prefs, s_prefs->num_elements, dict_find(data, MESSAGE_KEY_elements)->value->data);

@@ -102,4 +102,9 @@ void status_bar_element_tick(StatusBarElement *el) {
   if (el->recency != NULL) {
     recency_component_tick(el->recency);
   }
+  if (get_prefs()->status_center_text) {
+    text_layer_set_text_alignment(el->text, GTextAlignmentCenter);
+  } else {
+    text_layer_set_text_alignment(el->text, GTextAlignmentLeft);
+  }
 }

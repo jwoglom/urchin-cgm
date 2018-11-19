@@ -75,6 +75,10 @@
     }
     config.statusRecencyFormat = config.statusRecencyFormat || c.DEFAULT_CONFIG.statusRecencyFormat;
 
+    if (config.statusCenterText === undefined) {
+      config.statusCenterText = false;
+    }
+
     return config;
   }
 
@@ -656,6 +660,7 @@
     $('[name=statusMinRecencyToShowMinutes]').val(current['statusMinRecencyToShowMinutes']);
     $('[name=statusMaxAgeMinutes]').val(current['statusMaxAgeMinutes']);
     $('[name=statusRecencyFormat]').val(current['statusRecencyFormat']);
+    $('[name=statusCenterText]').prop('checked', !!current['statusCenterText']);
 
     if (current.batteryAsNumber === true) {
       $('[name=batteryAsNumber][value=number]').addClass('active');
@@ -709,6 +714,7 @@
       statusMinRecencyToShowMinutes: tryParseInt($('[name=statusMinRecencyToShowMinutes]').val()),
       statusMaxAgeMinutes: tryParseInt($('[name=statusMaxAgeMinutes]').val()),
       statusRecencyFormat: $('[name=statusRecencyFormat]').val(),
+      statusCenterText: $('[name=statusCenterText]').val(),
       batteryAsNumber: $('[name=batteryAsNumber][value=number]').hasClass('active'),
       bolusTicks: $('[name=bolusTicks]').is(':checked'),
       basalGraph: $('[name=basalGraph]').is(':checked'),

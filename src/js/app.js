@@ -185,6 +185,7 @@ function app(Pebble, c) {
       statusMinRecencyToShowMinutes: config.statusMinRecencyToShowMinutes,
       statusMaxAgeMinutes: config.statusMaxAgeMinutes,
       statusRecencyFormat: c.STATUS_RECENCY_FORMAT[config.statusRecencyFormat],
+      statusCenterText: config.statusCenterText,
     });
   }
 

@@ -46,6 +46,7 @@
       "statusMinRecencyToShowMinutes": 10,
       "statusMaxAgeMinutes": 30,
       "statusRecencyFormat": "parenLeft",
+      "statusCenterText": false,
       "batteryAsNumber": false,
       "bolusTicks": false,
       "basalGraph": false,

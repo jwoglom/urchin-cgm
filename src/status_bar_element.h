@@ -9,6 +9,7 @@ typedef struct StatusBarElement {
   TextLayer *text;
   BatteryComponent *battery;
   RecencyComponent *recency;
+  bool centerAlign;
 } StatusBarElement;
 
 StatusBarElement* status_bar_element_create(Layer *parent);
