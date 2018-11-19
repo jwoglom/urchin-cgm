@@ -697,6 +697,8 @@ var data = function(c, maxSGVCount) {
   d.getSGVsDateDescending = function(config) {
     if (config.dataSource === 'dexcom') {
       return d.getShareSGVsDateDescending(config);
+    } else if (config.dataSource == 'xdrip') {
+      return d.getXdripSGVsDateDescending(config);
     } else {
       return d.getNightscoutSGVsDateDescending(config);
     }
@@ -735,6 +737,15 @@ var data = function(c, maxSGVCount) {
       start = new Date() - sgvCache.maxSecondsOld * 1000;
     }
     var url = config.nightscout_url + '/api/v1/entries/sgv.json?count=1000&find[date][$gt]=' + start;
+    return d.getJSON(url).then(function(newEntries) {
+      return sgvCache.update(
+        filterKeys(newEntries, ['date', 'sgv', 'trend', 'direction', 'filtered', 'unfiltered', 'noise'])
+      );
+    });
+  });
+
+  d.getXdripSGVsDateDescending = debounce(function(config) {
+    var url = 'http://127.0.0.1:17580/sgv.json?count=100';
     return d.getJSON(url).then(function(newEntries) {
       return sgvCache.update(
         filterKeys(newEntries, ['date', 'sgv', 'trend', 'direction', 'filtered', 'unfiltered', 'noise'])
