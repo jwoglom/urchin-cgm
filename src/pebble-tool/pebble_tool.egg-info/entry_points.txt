@@ -1,0 +1,3 @@
+[console_scripts]
+pebble = pebble_tool:run_tool
+
