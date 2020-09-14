@@ -1,4 +1,5 @@
-build
+build/*
+!build/urchin-cgm.pbw
 src/generated
 src/js/generated
 config/js/generated

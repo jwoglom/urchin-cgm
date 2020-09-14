@@ -729,13 +729,18 @@ var data = function(c, maxSGVCount) {
     });
   }
 
-  d.getNightscoutSGVsDateDescending = debounce(function(config) {
+  d.getStartDate = debounce(function(config) {
     var start;
     if (sgvCache.entries.length) {
       start = sgvCache.entries[0]['date'];
     } else {
       start = new Date() - sgvCache.maxSecondsOld * 1000;
     }
+    return start;
+  });
+
+  d.getNightscoutSGVsDateDescending = debounce(function(config) {
+    var start = d.getStartDate(config);
     var url = config.nightscout_url + '/api/v1/entries/sgv.json?count=1000&find[date][$gt]=' + start;
     return d.getJSON(url).then(function(newEntries) {
       return sgvCache.update(
@@ -745,7 +750,8 @@ var data = function(c, maxSGVCount) {
   });
 
   d.getXdripSGVsDateDescending = debounce(function(config) {
-    var url = 'http://127.0.0.1:17580/sgv.json?count=100';
+    var start = d.getStartDate(config);
+    var url = 'http://127.0.0.1:17580/sgv.json?count=100&brief_mode=true&find[date][$gt]=' + start;
     return d.getJSON(url).then(function(newEntries) {
       return sgvCache.update(
         filterKeys(newEntries, ['date', 'sgv', 'trend', 'direction', 'filtered', 'unfiltered', 'noise'])

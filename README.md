@@ -84,12 +84,22 @@ When the watch fails to fetch data, a message describing the problem briefly app
 
 Contributions are welcome in the form of bugs and pull requests. To report a bug or provide feedback, please [file an issue][file-issue]. To contribute code, please use the instructions below to build and test the watchface.
 
-* Install the [Pebble SDK Tool].
-
-* Install and activate the Pebble SDK. As of this writing, the app is built with SDK 3.14, but later versions should work, too.
+* Install the [Pebble SDK Tool]. For MacOS:
   ```
-  pebble sdk install 3.14
-  pebble sdk activate 3.14
+   brew tap hexdump/homebrew-pebble-sdk
+   brew install pebble-sdk
+   ```
+
+* Install and activate the Pebble SDK. Originally, the app was built with SDK 3.14, but later versions should work, too.
+  ```
+  touch $HOME/Library/Application\ Support/Pebble\ SDK/NO_TRACKING
+  pebble sdk install https://github.com/aveao/PebbleArchive/raw/master/SDKCores/sdk-core-4.3.tar.bz2
+  pebble sdk activate 4.3
+  ```
+
+* To build (the built file is in build/urchin-cgm.pbw):
+  ```
+  pebble build
   ```
 
 * Build and run the watchface with a command like:
