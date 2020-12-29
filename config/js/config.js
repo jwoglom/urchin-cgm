@@ -794,6 +794,7 @@
 
     var current = upgradeConfig(phoneConfig);
     populateValues(current);
+    $('#current-configuration').val(JSON.stringify(current));
 
     $('#update-available #running-version').text(watchInfo.version || '0.0.0');
     $('#update-available #available-version').text(c.VERSION);
