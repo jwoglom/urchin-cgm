@@ -750,8 +750,7 @@ var data = function(c, maxSGVCount) {
   });
 
   d.getXdripSGVsDateDescending = debounce(function(config) {
-    var start = d.getStartDate(config);
-    var url = 'http://127.0.0.1:17580/sgv.json?count=100&brief_mode=true&find[date][$gt]=' + start;
+    var url = 'http://127.0.0.1:17580/sgv.json?count=36&brief_mode=true';
     return d.getJSON(url).then(function(newEntries) {
       return sgvCache.update(
         filterKeys(newEntries, ['date', 'sgv', 'trend', 'direction', 'filtered', 'unfiltered', 'noise'])
@@ -823,7 +822,10 @@ var data = function(c, maxSGVCount) {
     // changes so infrequently that we can simply request it once per app load.
     // (If the user updates their profile, they should restart the watchface.)
     if (profileCache === undefined) {
-      profileCache = d.getJSON(config.nightscout_url + '/api/v1/profile.json');
+      profileCache = d.getJSON(config.nightscout_url + '/api/v1/profile.json').catch(function(err) {
+        console.log("Ignoring error in getProfile", err);
+        return [];
+      });
     }
     return profileCache;
   };
